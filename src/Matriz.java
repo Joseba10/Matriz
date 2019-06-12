@@ -1,32 +1,68 @@
 import java.util.Random;
 
 public class Matriz {
-public static void main(String[] args) {
-	
 
-	int NUMERO_ELEMENTOS = 4;
-	int VALOR_MAXIMO = ObtencionTeclado.recogerEnteroTeclado("Dame el valor máximo: ");
+	private static int[][] matrizarray;
+	private static int[] matrizdiagonal;
 
-	
-	int[] arrayEnterosAleatorios = generarArrayEnterosAleatorios(NUMERO_ELEMENTOS, VALOR_MAXIMO);
-	int[][] matriz =  new int[4][4];
-	System.out.println("ELEMENTOS DEL ARRAY");
-	imprimirArray(arrayEnterosAleatorios);
-}
+	public static void main(String[] args) {
 
-private static int[] generarArrayEnterosAleatorios(int numeroelementos, int valormax) {
-	Random random = new Random();
-	int[] arrayEnteros = new int[numeroelementos];
-	for (int i = 0; i < arrayEnteros.length; i++) {
-		arrayEnteros[i] = random.nextInt(valormax + 1);
+		Matriz matriz = new Matriz();
+		matriz.cargar();
+		matriz.imprimirArrayMulti(matrizarray);
+		matriz.ComprobarMatriz(matrizarray);
+		matriz.imprimirArray(matrizdiagonal);
+
 	}
-	return arrayEnteros;
-}
 
-public static int[] imprimirArray(int[] arrayEnteros) {
-	for (int i = 0; i < arrayEnteros.length; i++) {
-		System.out.print(arrayEnteros[i]);
+	public static int[] imprimirArray(int[] arrayEnteros) {
+		for (int i = 0; i < arrayEnteros.length; i++) {
+			System.out.print(arrayEnteros[i]);
+		}
+		return arrayEnteros;
 	}
-	return arrayEnteros;
-}
+
+	public void cargar() {
+
+		String mensajefilas = ObtencionTeclado.recogerStringTeclado("Cuantas fila tiene la matriz: \n");
+		int filas = Integer.parseInt(mensajefilas);
+
+		String mensajecolumnas = ObtencionTeclado.recogerStringTeclado("Cuantas columnas tiene la matriz:\n");
+		System.out.println(mensajecolumnas);
+		int columnas = Integer.parseInt(mensajecolumnas);
+		System.out.println(columnas);
+		matrizarray = new int[filas][columnas];
+
+		for (int i = 0; i < matrizarray.length; i++) {
+
+			for (int j = 0; j < matrizarray[i].length; j++) {
+
+				int random = (int) (Math.random() * 9 + 1);
+				matrizarray[i][j] = random;
+			}
+		}
+
+	}
+
+	public static void imprimirArrayMulti(int[][] matrizarray) {
+		for (int i = 0; i < matrizarray.length; i++) {
+
+			for (int j = 0; j < matrizarray.length; j++) {
+				System.out.print(" " + matrizarray[i][j]);
+
+			}
+			System.out.println();
+		}
+
+	}
+
+	public int[] ComprobarMatriz(int[][] matrizarray) {
+
+		for (int i = 0; i < matrizarray.length; i++) {
+
+			matrizdiagonal[i] = matrizarray[i][i];
+
+		}
+		return matrizdiagonal;
+	}
 }
