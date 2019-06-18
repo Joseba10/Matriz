@@ -4,14 +4,17 @@ public class Matriz {
 
 	private static int[][] matrizarray;
 	private static int[] matrizdiagonal;
+	
+	static int[] lateralderecho;
+	static int[] lateralizquierdo;
 
 	public static void main(String[] args) {
 
 		Matriz matriz = new Matriz();
 		matriz.cargar();
 		matriz.imprimirArrayMulti(matrizarray);
-		matriz.ComprobarMatriz(matrizarray);
-		matriz.imprimirArray(matrizdiagonal);
+		//matriz.ComprobarMatriz(matrizarray);
+		//matriz.imprimirArray(matrizdiagonal);
 
 	}
 
@@ -39,6 +42,9 @@ public class Matriz {
 
 				int random = (int) (Math.random() * 9 + 1);
 				matrizarray[i][j] = random;
+				
+			
+				
 			}
 		}
 
@@ -50,6 +56,7 @@ public class Matriz {
 			for (int j = 0; j < matrizarray.length; j++) {
 				System.out.print(" " + matrizarray[i][j]);
 
+			
 			}
 			System.out.println();
 		}
@@ -58,9 +65,11 @@ public class Matriz {
 
 	public int[] ComprobarMatriz(int[][] matrizarray) {
 
-		for (int i = 0; i < matrizarray.length; i++) {
+		for (int i = 1; i < matrizarray.length; i++) {
 
 			matrizdiagonal[i] = matrizarray[i][i];
+			
+	
 
 		}
 		return matrizdiagonal;
